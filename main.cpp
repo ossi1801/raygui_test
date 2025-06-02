@@ -9,16 +9,16 @@ float y = 0;
 void loop() {
   BeginDrawing();
   ClearBackground(SKYBLUE);
-  for (int i = 0; i < 100; i++) {
+  // for (int i = 0; i < 100; i++) {
 
-    DrawText("Hello world", x, y, 10, RED);
-    // DrawText("Hello world", 100 + i, 100, 10, RED);
-  }
+  DrawRectangle(x, y, 50, 50, RED);
+  DrawText("Hello world", 100, 100, 10, RED);
+  //}
 
   EndDrawing();
 }
 void check_user_input() {
-  float speed = 0.5;
+  float speed = 0.1;
   if (IsKeyDown(KEY_LEFT)) {
     x -= speed;
   }
