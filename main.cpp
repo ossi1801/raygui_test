@@ -1,42 +1,62 @@
 #include <cstdio>
 #include <raylib.h>
 #define RAYGUI_IMPLEMENTATION
+#include <iostream>
 #include <raygui.h>
+using namespace std;
+struct {
+  float x;
+  float y;
+  float w;
+  float h;
+  // Color ?
+  // Name ?
+} player;
 
-float x = 0;
-float y = 0;
+void init_player() {
+  player.x = 0;
+  player.y = 0;
+  player.w = 20;
+  player.h = 20;
+  // player.color?
+  // player.Name?
+}
+
 // Main loop runs on everyframe ?
 void loop() {
   BeginDrawing();
   ClearBackground(SKYBLUE);
   // for (int i = 0; i < 100; i++) {
-
-  DrawRectangle(x, y, 50, 50, RED);
+  // if (player.x != 0)
+  // cout << player.x;
+  DrawRectangle(player.x, player.y, player.w, player.h, RED);
   DrawText("Hello world", 100, 100, 10, RED);
   //}
 
   EndDrawing();
 }
 void check_user_input() {
-  float speed = 0.1;
+  float speed = 0.05;
   if (IsKeyDown(KEY_LEFT)) {
-    x -= speed;
+    player.x -= speed;
   }
   if (IsKeyDown(KEY_RIGHT)) {
-    x += speed;
+    player.x += speed;
   }
   if (IsKeyDown(KEY_DOWN)) {
-    y += speed;
+    player.y += speed;
   }
   if (IsKeyDown(KEY_UP)) {
-    y -= speed;
+    player.y -= speed;
   }
 }
 
 int main(int argc, char *argv[]) {
   printf("Program running");
   InitWindow(600, 400, "Test app");
+  SetWindowMonitor(0);
   SetExitKey(KEY_ESCAPE);
+  init_player();
   while (!WindowShouldClose()) {
     check_user_input();
     loop();
