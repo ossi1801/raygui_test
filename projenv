@@ -1,0 +1,11 @@
+#!/bin/bash
+
+alias r="./prog r"
+alias b="./prog b"
+alias rb="./prog"
+alias br="./prog"
+
+#After creating this file
+#chmod +x projenv
+#source projenv
+#These create aliases for quick build
