@@ -14,6 +14,7 @@ struct {
   float w;
   float h;
   float speed;
+  float rotation;
   // Color ?
   // Name ?
 } player;
@@ -24,6 +25,7 @@ void init_player() {
   player.w = 20;
   player.h = 20;
   player.speed = 0.05;
+  player.rotation = 0;
   // player.color?
   // player.Name?
 }
@@ -32,10 +34,15 @@ void init_player() {
 void loop() {
   BeginDrawing();
   ClearBackground(SKYBLUE);
-  // for (int i = 0; i < 100; i++) {
-  // if (player.x != 0)
-  // cout << player.x;
-  DrawRectangle(player.x, player.y, player.w, player.h, RED);
+  Vector2 v1 = {player.x + sinf(player.rotation * DEG2RAD) * (player.h),
+                player.y - cosf(player.rotation * DEG2RAD) * (player.h)};
+  Vector2 v2 = {player.x - cosf(player.rotation * DEG2RAD) * (player.w / 2),
+                player.y - sinf(player.rotation * DEG2RAD) * (player.w / 2)};
+  Vector2 v3 = {player.x + cosf(player.rotation * DEG2RAD) * (player.w / 2),
+                player.y + sinf(player.rotation * DEG2RAD) * (player.w / 2)};
+
+  DrawTriangle(v1, v2, v3, RED);
+  // DrawRectangle(player.x, player.y, player.w, player.h, RED);
   DrawText("Hello world", 100, 100, 10, RED);
   //}
 
